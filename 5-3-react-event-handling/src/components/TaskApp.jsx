@@ -7,24 +7,17 @@ export default function TaskApp() {
 
   
   const handleSubmit = () => {
-    //TODO: submit
-    if (text.trim() === '')
-      return;
-
-    const newTask = {
-      id: Date.now(), // the id
-      text: text.trim(),
-    };
-
-    setTasks([...tasks, newTask]);
-    setText("");
-   
+    const trimmed = text.trim(); 
+    if (!trimmed) return; 
+  
+    setTasks(prev => [...prev, { id: Date.now(), text: trimmed }]); 
+    setText(""); 
   };
-
+  
   
   const handleDelete = (id) => {
     // TODO: filter tasks by id to remove the clicked one
-    setTasks(tasks.filter(tasks=>tasks.id !== id));
+    setTasks(prev => prev.filter(task => task.id !== id));
   };
 
   
